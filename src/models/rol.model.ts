@@ -1,14 +1,14 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {Usuario} from './usuario.model';
 
 @model()
 export class Rol extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  id?: number;
+  _id?: string;
 
   @property({
     type: 'string',
@@ -16,7 +16,7 @@ export class Rol extends Entity {
   })
   nombre: string;
 
-  @hasMany(() => Usuario, {keyTo: 'id_rol'})
+  @hasMany(() => Usuario, {keyTo: '_id_rol'})
   esta_asociado: Usuario[];
 
   constructor(data?: Partial<Rol>) {
